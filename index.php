@@ -43,7 +43,9 @@
 	
 	<div id="login">
 		<aside>
-			
+		<figure>
+				<a href=""><img src="img/logo.png" width="149" height="42" data-retina="true" alt=""></a>
+			</figure>
 			  <form action="index.php" method="POST">
               <?php include('./errors.php'); ?>
 				<div class="form-group">

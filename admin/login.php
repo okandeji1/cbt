@@ -32,7 +32,7 @@
 
 </head>
 
-<body id="login_bg">
+<body id="admin">
 	
 	<nav id="menu" class="fake_menu"></nav>
 	
@@ -43,7 +43,9 @@
 	
 	<div id="login">
 		<aside>
-			
+		<figure>
+				<a href="#"><img src="img/logo.png" width="149" height="42" data-retina="true" alt=""></a>
+			</figure>
 			  <form action="login.php" method="POST">
               <?php include('../errors.php'); ?>
 				<div class.="form-group">
@@ -73,6 +75,7 @@
     <script src="../public/js/jquery-2.2.4.min.js"></script>
     <script src="../public/js/common_scripts.js"></script>
     <script src="../public/js/main.js"></script>
+    <script src="../public/js/bootstrap.min.js"></script>
 	<script src="../public/js/validate.js"></script>	
   
 </body>

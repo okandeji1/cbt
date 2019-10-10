@@ -1,7 +1,9 @@
 
 <!-- Include header file -->
 <?php include('./partials/header.php'); ?>
-  <!-- Nav Contents -->
+  <!-- Navigation-->
+<?php include('./partials/nav.php'); ?>
+  <!-- /Navigation-->
   <div class="content-wrapper">
     <div class="container-fluid">
       <!-- Breadcrumbs-->

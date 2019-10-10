@@ -1,6 +1,6 @@
 <?php
     session_start();
-		unset($_SESSION['email']);
-		header('location: index.php');
+		unset($_SESSION['matric_no']);
+		header('location: ./index.php');
 		exit();
 ?>

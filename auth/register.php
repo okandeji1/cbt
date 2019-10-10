@@ -49,7 +49,7 @@
 	<div id="login">
 		<aside>
 			<figure>
-				<a href="index.html"><img src="img/logo.png" width="149" height="42" data-retina="true" alt=""></a>
+				<a href="#"><img src="img/logo.png" width="149" height="42" data-retina="true" alt=""></a>
 			</figure>
 			<form autocomplete="off" action="register.php" method="post">
 			<?php include('../errors.php'); ?>

@@ -7,6 +7,7 @@ require '../config/config.php';
 // Initialize variables
 $email = "";
 $errors = array();
+$success = array();
 // Login Student
 if(isset($_POST['admin_auth'])){
     // get inputed values from the form

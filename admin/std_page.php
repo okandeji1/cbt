@@ -1,7 +1,10 @@
+<!-- Include controller -->
+<?php include('./std_controller.php') ?>
 <!-- Include header file -->
-<?php include('../partials/header.php'); ?>
+<?php include('./partials/header.php'); ?>
 <div class="content-wrapper">
     <div class="container-fluid">
+    <?php include('../errors.php'); ?>
       <!-- Breadcrumbs-->
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
@@ -12,7 +15,10 @@
 		<!-- Example DataTables Card-->
       <div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-table"></i> Data Table Example</div>
+          <i class="fa fa-table"></i> Students table 
+          <div><a class="btn btn-success" data-toggle="modal" data-target="#addStd">
+            <i class="fa fa-fw fa-user-plus"></i>Add</a></div>
+        </div>
         <div class="card-body">
           <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -503,5 +509,48 @@
 	  </div>
 	  <!-- /container-fluid-->
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="addStd" tabindex="-1" role="dialog" aria-labelledby="addStd" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addStd">Add New Student</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form action="std_page.php" method="post">
+            <?php include('../errors.php'); ?>
+              <div class="form-group">
+                <input type="text" name="surname" id="" class="form-control" placeholder="Surname" required>
+              </div>
+              <div class="form-group">
+                <input type="text" name="firstname" id="" class="form-control" placeholder="Firstname" required>
+              </div>
+              <div class="form-group">
+                <input type="text" name="other_name" id="" class="form-control" placeholder="Other name" required>
+              </div>
+              <div class="form-group">
+                <input type="email" name="email" id="" class="form-control" placeholder="Email" required>
+              </div>
+              <div class="form-group">
+                <input type="password" name="password" id="" class="form-control" placeholder="Password" required>
+              </div>
+              <div class="form-group">
+                <input type="text" name="matric_no" id="" class="form-control" placeholder="Matric/Reg No" required>
+              </div>
+              <div class="form-group">
+                <input type="text" name="dept" id="" class="form-control" placeholder="Department" required>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <button class="btn btn-primary" type="submit" name="add_std">Add</button>
+          </div>
+          </form>
+        </div>
+      </div>
 <!-- Include footer file -->
-<?php include('../partials/footer.php'); ?>
+<?php include('./partials/footer.php'); ?>
