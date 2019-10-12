@@ -50,14 +50,14 @@
               <?php include('./errors.php'); ?>
 				<div class="form-group">
 					<span class="input">
-					<input class="input_field" type="text" autocomplete="off" name="matric_no">
+					<input class="input_field" type="email" autocomplete="off" name="email">
 						<label class="input_label">
-						<span class="input__label-content">Your Matric/Reg No</span>
+						<span class="input__label-content" required>Your Email Address</span>
 					</label>
 					</span>
 
 					<span class="input">
-					<input class="input_field" type="password" autocomplete="new-password" name="password">
+					<input class="input_field" type="password" autocomplete="new-password" name="password" required>
 						<label class="input_label">
 						<span class="input__label-content">Your password</span>
 					</label>

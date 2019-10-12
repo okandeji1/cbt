@@ -4,7 +4,6 @@
      <p><?php echo $error ?></p>
      <?php endforeach ?>
   </div>
-
 <?php endif ?>
 <!-- Success -->
 <?php if(count($success) > 0 ) : ?>

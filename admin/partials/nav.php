@@ -18,7 +18,7 @@
           </a>
         </li>
 		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Bookings">
-          <a class="nav-link" href="./course_page.php">
+          <a class="nav-link" href="./course.php">
             <i class="fa fa-fw fa-archive"></i>
             <span class="nav-link-text">Courses Management <span class="badge badge-pill badge-primary">6 New</span></span>
           </a>
@@ -30,7 +30,7 @@
           </a>
         </li>
 		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Bookmarks">
-          <a class="nav-link" href="./qpage.php">
+          <a class="nav-link" href="./question.php">
             <i class="fa fa-fw fa-heart"></i>
             <span class="nav-link-text">Questions Management</span>
           </a>

@@ -1,5 +1,5 @@
 <!-- Include controller -->
-<?php include('./std_controller.php') ?>
+<?php include('./studentController.php') ?>
 <!-- Include header file -->
 <?php include('./partials/header.php'); ?>
 <div class="content-wrapper">
