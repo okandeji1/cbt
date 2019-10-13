@@ -7,6 +7,7 @@ require '../config/config.php';
 $title = "";
 $lecturer = "";
 $student = "";
+$time = "";
 $errors = array();
 $success = array();
 /* Conditional statement to add student
@@ -18,6 +19,7 @@ if (isset($_POST['addCourse'])){
   $title = $mysqli->real_escape_string($_POST['title']);
   $lecturer = $mysqli->real_escape_string($_POST['lecturer']);
   $student = $mysqli->real_escape_string($_POST['student']);
+  $time = $mysqli->real_escape_string($_POST['time']);
 
   // check if all field is not empty
   if(empty($title)){
@@ -32,6 +34,11 @@ if (isset($_POST['addCourse'])){
 
   if(empty($student)){
     array_push($errors, "Student is required");
+    return;
+  }
+
+  if(empty($time)){
+    array_push($errors, "Time is required");
     return;
   }
 
@@ -52,7 +59,7 @@ if(count($errors) == 0){
     VALUES (?,?,?)";
     $stmt = $mysqli->prepare($sql);
     // Bind the statement
-    $stmt->bind_param('sss', $title, $lecturer, $student);
+    $stmt->bind_param('sssi', $title, $lecturer, $student, $time);
     // Execute
     $stmt->execute() or die($mysqli->error);
 

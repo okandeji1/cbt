@@ -8,9 +8,9 @@
       <!-- Breadcrumbs-->
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <a href="#">Course</a>
+          <a href="#">Admin</a>
         </li>
-        <li class="breadcrumb-item active">Tables</li>
+        <li class="breadcrumb-item active">Course Management</li>
       </ol>
 		<!-- Example DataTables Card-->
       <div class="card mb-3">
@@ -133,6 +133,9 @@
               </div>
               <div class="form-group">
                 <input type="text" name="student" class="form-control" placeholder="Number of student taken the course" required>
+              </div>
+              <div class="form-group">
+                <input type="text" name="time" class="form-control" placeholder="Time given (e.g 00:20:50)" required>
               </div>
           </div>
           <div class="modal-footer">

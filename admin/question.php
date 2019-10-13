@@ -1,6 +1,6 @@
 <?php
 require '../config/config.php';
-$qry="SELECT `title` FROM `courses`";
+$qry="SELECT * FROM `courses` order by `title`";
 $qrycheck=$mysqli->query($qry) or die($mysqli->error);
 if ($qrycheck->num_rows > 0){
     while($fetch = $qrycheck->fetch_assoc()){
@@ -20,9 +20,9 @@ if ($qrycheck->num_rows > 0){
       <!-- Breadcrumbs-->
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <a href="#">Question</a>
+          <a href="#">Admin</a>
         </li>
-        <li class="breadcrumb-item active">Tables</li>
+        <li class="breadcrumb-item active">Question management</li>
       </ol>
 		<!-- Example DataTables Card-->
       <div class="card mb-3">

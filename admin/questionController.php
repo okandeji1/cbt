@@ -10,6 +10,8 @@ $optionA = "";
 $optionB = "";
 $optionC = "";
 $optionD = "";
+$answer = "";
+$time = "";
 $errors = array();
 $success = array();
 /* Conditional statement to add student
@@ -75,7 +77,7 @@ if($row){ // If question exists
 // If no row found
 if(count($errors) == 0){
     // Get course by course title
-    $courseQuery = "SELECT `title` FROM `courses` WHERE `title`= '$courseTitle' LIMIT 1";
+    $courseQuery = "SELECT * FROM `courses` WHERE `title`= '$courseTitle' LIMIT 1";
     $result = $mysqli->query($courseQuery) or die($mysqli->error);
     $getResult = $result->fetch_assoc();
     if($getResult){
@@ -83,7 +85,7 @@ if(count($errors) == 0){
         $courseId = $getResult['id'];
         // Prepared statement
         $sql = "INSERT INTO `questions` (`course_id`, `question`, `option_A`, `option_B`, `option_C`, `option_D`, `answer`)
-        VALUES (?,?,?,?,?,?,?)";
+        VALUES (?,?,?,?,?,?,?,?)";
         $stmt = $mysqli->prepare($sql);
         // Bind the statement
         $stmt->bind_param('issssss', $courseId, $question, $optionA, $optionB, $optionC, $optionD, $answer);

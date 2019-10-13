@@ -24,7 +24,7 @@
           </a>
         </li>
 		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Reviews">
-          <a class="nav-link" href="./test_page.php">
+          <a class="nav-link" href="./add_test.php">
             <i class="fa fa-fw fa-star"></i>
             <span class="nav-link-text">Tests Management</span>
           </a>

@@ -8,9 +8,9 @@
       <!-- Breadcrumbs-->
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <a href="#">Dashboard</a>
+          <a href="#">Admin</a>
         </li>
-        <li class="breadcrumb-item active">Tables</li>
+        <li class="breadcrumb-item active">Student Management</li>
       </ol>
 		<!-- Example DataTables Card-->
       <div class="card mb-3">
