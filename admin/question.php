@@ -144,6 +144,9 @@ if ($qrycheck->num_rows > 0){
                 </select>
               </div>
               <div class="form-group">
+                <input type="number" name="number" placeholder="Enter question number" required>
+              </div>
+              <div class="form-group">
                 <textarea name="question" class="form-control"
                 placeholder="Enter question"></textarea>
               </div>

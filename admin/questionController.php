@@ -13,7 +13,6 @@ $optionD = "";
 $answer = "";
 $time = "";
 $errors = array();
-$success = array();
 /* Conditional statement to add student
 * we have select and insert query
 * If post is set
@@ -21,6 +20,7 @@ $success = array();
 if (isset($_POST['addQuestion'])){
   // get inputed values from the form
   $courseTitle = $mysqli->real_escape_string($_POST['course']);
+  $number = $mysqli->real_escape_string($_POST['number']);
   $question = $mysqli->real_escape_string($_POST['question']);
   $optionA = $mysqli->real_escape_string($_POST['optionA']);
   $optionB = $mysqli->real_escape_string($_POST['optionB']);
@@ -33,6 +33,11 @@ if (isset($_POST['addQuestion'])){
       array_push($errors, "Course Title is required");
       return;
   }
+
+  if(empty($number)){
+    array_push($errors, "Question number is required");
+    return;
+}
 
   if(empty($question)){
     array_push($errors, "Question is required");
@@ -65,7 +70,7 @@ if(empty($answer)){
 }
 
 //  Check if user already exist
-$query = "SELECT `question` FROM `questions` WHERE `question`= '$question' LIMIT 1";
+$query = "SELECT `question` FROM `questions` WHERE `question`= '$question'";
 $result = $mysqli->query($query) or die($mysqli->error);
 $row = $result->fetch_assoc();
 
@@ -77,24 +82,23 @@ if($row){ // If question exists
 // If no row found
 if(count($errors) == 0){
     // Get course by course title
-    $courseQuery = "SELECT * FROM `courses` WHERE `title`= '$courseTitle' LIMIT 1";
+    $courseQuery = "SELECT * FROM `courses` WHERE `title`= '$courseTitle'";
     $result = $mysqli->query($courseQuery) or die($mysqli->error);
     $getResult = $result->fetch_assoc();
     if($getResult){
         // course id
         $courseId = $getResult['id'];
         // Prepared statement
-        $sql = "INSERT INTO `questions` (`course_id`, `question`, `option_A`, `option_B`, `option_C`, `option_D`, `answer`)
+        $sql = "INSERT INTO `questions` (`course_id`, `question_number`, `question`, `option_A`, `option_B`, `option_C`, `option_D`, `answer`)
         VALUES (?,?,?,?,?,?,?,?)";
         $stmt = $mysqli->prepare($sql);
         // Bind the statement
-        $stmt->bind_param('issssss', $courseId, $question, $optionA, $optionB, $optionC, $optionD, $answer);
+        $stmt->bind_param('iissssss', $courseId, $number, $question, $optionA, $optionB, $optionC, $optionD, $answer);
         // Execute
-        $stmt->execute() or die($mysqli->error);
+        $stmt->execute() or die($mysqli->error.__LINE__);
 
         if($stmt){     
             header('location: ./question.php');
-            array_push($success, 'Question added successfully!');
         }else {
             array_push($errors, 'Error in connection'.$mysqli->error);
         }

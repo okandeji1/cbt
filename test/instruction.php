@@ -30,6 +30,16 @@ if ($qrycheck->num_rows > 0){
 } else {
     echo "No user data found";
 }
+
+/*
+    * Get total question
+    */
+    $courseId = 2;
+    $qry = "SELECT * FROM `questions` WHERE `course_id` = '$courseId'";
+    // result
+    $results = $mysqli->query($qry) or die($mysqli->error.__LINE__);
+    // Total
+    $total = $results->num_rows;
 ?>
 <!DOCTYPE html>
 <html>
@@ -110,7 +120,7 @@ hr {
           <div class="row">
             <div class="col-md-8">
               <h4 style="text-decoration: underline;"><?php echo "Course Title: " . " " . $course_title; ?></h4>
-              <p>Total Number of Questions: 10</p>
+              <p>Total Number of Questions: <?php echo $total; ?></p>
               <p>Total time given: 2 minutes</p>
               <p style="color: #880000; font-size: 16px;">Course Instructions:</p> 
               <p>Attempts all Questions within the limited time provided. You have 2mins for this session.</p>
@@ -123,7 +133,7 @@ hr {
           </div>
            <center><div class="row">
             <div class="col-md-12">
-              <a href="./test.php" class="btn btn-info">START EXAM</a>
+              <a href="./exam.php?n=1" class="btn btn-info">START EXAM</a>
             </div>
           </div></center>
         </div>

@@ -36,7 +36,7 @@ if (isset($_POST['addTest'])){
         // Get id
         $courseId = $row['id'];
         // Query test with course id
-        $courseQuery = "SELECT `course_id` FROM `tests` WHERE `course_id`= '$courseId' LIMIT 1";
+        $courseQuery = "SELECT `course_id` FROM `tests` WHERE `course_id`= '$courseId'";
         $result = $mysqli->query($courseQuery) or die($mysqli->error);
         $getResult = $result->fetch_assoc();
         // Check if course id already exist

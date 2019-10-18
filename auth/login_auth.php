@@ -38,6 +38,7 @@ if(isset($_POST['login_user'])){
               // Start session
               session_start();
               $_SESSION['email'] = $email;
+              $_SESSION['id'] = $userId;
               $_SESSION['success'] = "You are logged in";
               header('location: ./test/instruction.php');
             }else {

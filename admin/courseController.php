@@ -43,7 +43,7 @@ if (isset($_POST['addCourse'])){
   }
 
 //  Check if user already exist
-$checkUserQuery = "SELECT * FROM `courses` WHERE `title`= '$title' LIMIT 1";
+$checkUserQuery = "SELECT * FROM `courses` WHERE `title`= '$title'";
 $result = $mysqli->query($checkUserQuery) or die($mysqli->error);
 $course = $result->fetch_assoc();
 
