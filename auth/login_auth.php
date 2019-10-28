@@ -40,7 +40,7 @@ if(isset($_POST['login_user'])){
               $_SESSION['email'] = $email;
               $_SESSION['id'] = $userId;
               $_SESSION['success'] = "You are logged in";
-              header('location: ./test/instruction.php');
+              header('location: ./test/course_selection.php');
             }else {
               array_push($errors, 'Oops! Incorrect matric no or password');
             }

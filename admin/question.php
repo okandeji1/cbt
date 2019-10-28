@@ -1,13 +1,11 @@
 <?php
 require '../config/config.php';
-$qry="SELECT * FROM `courses` order by `title`";
-$qrycheck=$mysqli->query($qry) or die($mysqli->error);
+$qry = "SELECT * FROM `courses` order by `title`";
+$qrycheck = $mysqli->query($qry) or die($mysqli->error);
 if ($qrycheck->num_rows > 0){
     while($fetch = $qrycheck->fetch_assoc()){
         $courseTitles = $fetch['title'];
     }
-} else {
-    echo "No record found";
 }
 ?>
 <!-- Include controller -->

@@ -25,8 +25,6 @@ if ($qrycheck->num_rows > 0){
     while($fetch = $qrycheck->fetch_assoc()){
         $userId = $fetch['id'];
     }
-} else {
-    echo "No user data found";
 }
 
 // Set question number
