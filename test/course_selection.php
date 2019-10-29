@@ -29,8 +29,22 @@ if ($qrycheck->num_rows > 0){
     }
 }
 
-$query="SELECT * FROM `courses` order by `title`";
+/*
+* Get all added test
+*/
+$query="SELECT * FROM `tests` order by `created_at`";
 $result = $mysqli->query($query) or die($mysqli->error.__LINE__);
+if($result->num_rows>0){
+  while($test = $result->fetch_assoc()){
+    $course_id = $test['course_id'];
+  }
+}
+/*
+* Get course
+*/
+$courseQuery="SELECT * FROM `courses` WHERE `id` = '$course_id'";
+$results = $mysqli->query($courseQuery) or die($mysqli->error.__LINE__);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -104,37 +118,23 @@ hr {
         </div>
       </div>
     </section>
-    <section id="callaction" class="home-section paddingtop-20">
-      <div class="col-md-12">
-        <div class="container">
-               <div class="panel-group" id="accordion">
-                <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" id="collapseaccordion" href="#collapse1">
-                  Select Course (Choose from the options below to proceed)</a>
-                  </h4>
-                </div>
-                <div id="collapse1" class="panel-collapse">
-                  <div class="panel-body">
-                    <div class="col-md-12">
-                      <div class="course-links">
-                        <ul>
-                        <?php while($row = $result->fetch_assoc()){ ?>
-                          <li><a href="./instruction.php?title=<?php echo $row['title']; ?>"><?php echo $row['title']; ?></a></li>
-                        <?php } ?>
-                        </ul>
-                      </div>
-                    </div>
-                </div>
-                </div>
-                </div>
-             </div>
-        <div class="col-md-12">
-         
+    <section class="home-section paddingtop-20">
+      <div class="container">
+        <div class="row">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="p-5">Select Course (Choose from the options below that best apply to you)</h4>
+            </div>
+              <div class="card-body">
+                <ul>
+                  <?php while($row = $results->fetch_assoc()){ ?>
+                  <li><a href="./instruction.php?title=<?php echo $row['title']; ?>"><?php echo $row['title']; ?></a></li>
+                  <?php } ?>
+                </ul>
+              </div>
           </div>
+        </div>
       </div>
-    </div>
     </section>
     <div class="col-md-6">
       <div class="copy">© 2019 CBT SYSTEM | Made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://kandesoft.herokuapp.com" target="_blank">Okandeji</a></div>

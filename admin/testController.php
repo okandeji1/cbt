@@ -5,7 +5,6 @@
 require '../config/config.php';
 // Initialize variables
 $courseTitle = "";
-$time = "";
 $errors = array();
 /* Conditional statement to add Test
 * we have select and insert query
@@ -14,17 +13,11 @@ $errors = array();
 if (isset($_POST['addTest'])){
   // get inputed values from the form
   $courseTitle = $mysqli->real_escape_string($_POST['course']);
-  $time = $mysqli->real_escape_string($_POST['time']);
 
   // check if all field is not empty
   if(empty($courseTitle)){
       array_push($errors, "Course Title is required");
       return;
-  }
-
-  if(empty($time)){
-    array_push($errors, "Time is required");
-    return;
   }
 
     //  Get course ID with course title
@@ -48,7 +41,7 @@ if (isset($_POST['addTest'])){
             VALUES (?, ?)";
             $stmt = $mysqli->prepare($sql);
             // Bind the statement
-            $stmt->bind_param('is', $courseId, $time);
+            $stmt->bind_param('i', $courseId);
             // Execute
             $stmt->execute() or die($mysqli->error);
         }else {

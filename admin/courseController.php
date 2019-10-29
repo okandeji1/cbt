@@ -69,9 +69,45 @@ if(count($errors) == 0){
     }else {
         array_push($errors, 'Error in connection'.$mysqli->error);
     }
-}else {
+  }else {
     echo $errors;
-}
+  }
+
 }
 
+/*
+* Process delete API
+*/
+if(isset($_GET['n'])){
+  $course_id = (int) $_GET['n'];
+  $query = "DELETE FROM `courses` WHERE `id` = '$course_id'";
+  $result = $mysqli->query($query) or die($mysqli->error.__LINE__);
+
+  if($result){
+    header('location: ./course.php');
+  }else {
+    array_push($errors, 'Error in connection'.$mysqli->error);
+  }
+}
+/*
+* Update API
+*/
+if(isset($_POST['update'])){
+  $course_id = $mysqli->real_escape_string($_POST['id']);
+  $title = $mysqli->real_escape_string($_POST['title']);
+  $lecturer = $mysqli->real_escape_string($_POST['lecturer']);
+  $student = $mysqli->real_escape_string($_POST['student']);
+
+  // Process update
+  $update_query = "UPDATE `courses` SET `title` = '$title', `lecturer` = '$lecturer', `student` = '$student' WHERE `id` = '$course_id'";
+  $update = $mysqli->query($update_query) or die($mysqli->error.__LINE__);
+  // Check update
+  if($update){
+    header('location: ./course.php');
+    echo '<div class="alert alert-success">
+    <span>Data Updated Successfuly......!!</span></div>';
+  }else {
+    array_push($errors, 'Error in connection'.$mysqli->error);
+  }
+}
 ?>

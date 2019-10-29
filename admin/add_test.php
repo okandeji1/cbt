@@ -1,14 +1,7 @@
 <?php
 require '../config/config.php';
-$qry="SELECT * FROM `courses` order by `title`";
-$qrycheck=$mysqli->query($qry) or die($mysqli->error);
-if ($qrycheck->num_rows > 0){
-    while($fetch = $qrycheck->fetch_assoc()){
-        $courseTitles = $fetch['title'];
-    }
-} else {
-    echo "No record found";
-}
+$query="SELECT * FROM `courses` order by 'title' DESC";
+$result = $mysqli->query($query) or die($mysqli->error.__LINE__);
 ?>
 <!-- Include controller -->
 <?php include('./testController.php') ?>
@@ -42,11 +35,10 @@ if ($qrycheck->num_rows > 0){
               <div class="form-group">
                 <select name="course" class="form-control" required>
                   <option value="">Select course title</option>
-                  <option value="<?php echo $courseTitles ?>"><?php echo $courseTitles ?></option>
+                <?php while($row = $result->fetch_assoc()){ ?>
+                  <option value="<?php echo $row['title'] ?>"><?php echo $row['title'] ?></option>
+                <?php } ?>
                 </select>
-              </div>
-              <div class="form-group">
-                <input type="text" name="time" class="form-control" placeholder="Time Given (e.g 2h:45mins)" required>
               </div>
           </div>
           <div class="card-footer">
@@ -72,7 +64,9 @@ if ($qrycheck->num_rows > 0){
               <div class="form-group">
                 <select name="course" class="form-control" required>
                   <option value="">Select course title</option>
-                  <option value="<?php echo $courseTitles ?>"><?php echo $courseTitles ?></option>
+                  <?php while($row = $result->fetch_assoc()){ ?>
+                    <option value="<?php echo $row['title'] ?>"><?php echo $row['title'] ?></option>
+                  <?php } ?>
                 </select>
               </div>
           </div>

@@ -41,7 +41,8 @@ if ($result->num_rows > 0){
         $courseId = $fetch['id'];
     }
 }
-
+// Store course Id in session
+$_SESSION['course_id'] = $courseId;
 /*
     * Get total question
     */

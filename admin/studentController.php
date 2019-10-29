@@ -90,9 +90,46 @@ if(count($errors) == 0){
     }else {
         array_push($errors, 'Error in connection'.$mysqli->error);
     }
-}else {
+  }else {
     echo $errors;
+  }
 }
-}
+/*
+* Process delete API
+*/
+if(isset($_GET['n'])){
+    $std_id = (int) $_GET['n'];
+    $query = "DELETE FROM `students` WHERE `id` = '$std_id'";
+    $result = $mysqli->query($query) or die($mysqli->error.__LINE__);
+  
+    if($result){
+      header('location: ./std_page.php');
+    }else {
+      array_push($errors, 'Error in connection'.$mysqli->error);
+    }
+  }
 
+/*
+* Update API
+*/
+if(isset($_POST['update'])){
+  $studentId = $mysqli->real_escape_string($_POST['id']);
+  $surname = $mysqli->real_escape_string($_POST['surname']);
+  $firstname = $mysqli->real_escape_string($_POST['firstname']);
+  $othername = $mysqli->real_escape_string($_POST['othername']);
+  $email = $mysqli->real_escape_string($_POST['email']);
+  $department = $mysqli->real_escape_string($_POST['department']);
+
+  // Process update
+  $update_query = "UPDATE `students` SET `surname` = '$surname', `firstname` = '$firstname', `othername` = '$othername' `email` = '$email' `department` = '$department' WHERE `id` = '$studentId'";
+  $update = $mysqli->query($update_query) or die($mysqli->error.__LINE__);
+  // Check update
+  if($update){
+    header('location: ./std_page.php');
+    echo '<div class="alert alert-success">
+    <span>Data Updated Successfuly......!!</span></div>';
+  }else {
+    array_push($errors, 'Error in connection'.$mysqli->error);
+  }
+}
 ?>

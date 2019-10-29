@@ -8,6 +8,8 @@ if (!isset($_SESSION['email'])){
 } else {
   // set session for sessioned data
   $email = $_SESSION['email'];
+  $time = 6300;
+  $_SESSION['time'] = $time;
 }
 // Logout from session
 if(isset($_GET['../logout.php'])){
@@ -18,8 +20,8 @@ if(isset($_GET['../logout.php'])){
 }
 // Fetch database
 require '../config/config.php';// Get user with email
-$qry="SELECT * FROM `students` WHERE `email` = '$email' LIMIT 1";
-$qrycheck=$mysqli->query($qry) or die($mysqli->error);
+$qry = "SELECT * FROM `students` WHERE `email` = '$email' LIMIT 1";
+$qrycheck = $mysqli->query($qry) or die($mysqli->error);
 if ($qrycheck->num_rows > 0){
 
     while($fetch = $qrycheck->fetch_assoc()){
@@ -33,10 +35,10 @@ $number = (int) $_GET['n'];
 $query="SELECT * FROM `results` WHERE `user_id` = '$userId' LIMIT 1";
 $result = $mysqli->query($query) or die($mysqli->error);
 $row = $result->fetch_assoc();
-if ($row['user_id'] == $userId){
+if ($row['user_id'] === $userId){
   header('location: ../index.php');
 }
-  $courseId = 2;
+  $courseId = $_SESSION['course_id'];
 // Prepared statement to get question
 $questionQuery = "SELECT * FROM `questions` WHERE `course_id`= '$courseId' AND `question_number` = '$number'";
 $question = $mysqli->query($questionQuery) or die($mysqli->error.__LINE__);
@@ -111,6 +113,7 @@ hr {
               <div class="row">
                 <div class="col-md-8">
                     <div class="cta-text">
+                      <input type="hidden" id="time" value='<?php echo $_SESSION['time']; ?>'>
                       <h2>Time Left: <span id="countdown"></span></h2>
                     </div>
                     
@@ -169,7 +172,7 @@ hr {
 </html>
 <script>
 
-var upgradeTime = 6300;
+var upgradeTime = document.getElementById('time').value;
 var seconds = upgradeTime;
 function timer(){
     var hours = Math.floor(seconds / 3600);
@@ -189,38 +192,5 @@ function timer(){
     }
 }
 var countdowntimer = setInterval('timer()', 1000);
-
-$(document).ready(function() {
-    $('input[type="checkbox"]').change(function(){ 
-        var $this =  $(this).parents('#quiz-options').find('input[type="checkbox"]');
-        $this.not(this).prop('checked', false);
-        // ADDED THIS script
-        // WILL DISABLE THE HIDDEN INPUT IF ANY OF THE CHECKBOX IS SELECTED
-        var $nextthis = $(this).parents('#quiz-options').find('.null');
-        $nextthis.attr('disabled', true);
-    });
-});
-
-$('.cont').addClass('hide');
-    count=$('.questions').length;
-     $('#question'+1).removeClass('hide');
-
-     $(document).on('click', '.next',function(){
-         element=$(this).attr('id');
-         last = parseInt(element.substr(element.length - 1));
-         nex=last+1;
-         $('#question'+last).addClass('hide');
-
-         $('#question'+nex).removeClass('hide');
-     });
-
-     $(document).on('click', '.previous',function(){
-         element=$(this).attr('id');
-         last = parseInt(element.substr(element.length - 1));
-         pre=last-1;
-         $('#question'+last).addClass('hide');
-
-         $('#question'+pre).removeClass('hide');
-     });
 
 </script>
