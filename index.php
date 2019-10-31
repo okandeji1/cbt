@@ -65,7 +65,7 @@
 				</div>
 				<button type="submit" class="btn_1 rounded full-width add_top_60" name="login_user">Login</button>
 			</form>
-			<div class="copy">© 2019 CBT SYSTEM | Made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a
+			<div class="copy">© 2019 CBT SYSTEM | Made with <i class="fa fa-fw fa-heart text-danger" aria-hidden="true"></i> by <a
                     href="https://kandesoft.herokuapp.com" target="_blank">Okandeji</a></div> 
 		</aside>
 	</div>

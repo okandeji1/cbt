@@ -2,11 +2,24 @@
 require '../config/config.php';
 $qry = "SELECT * FROM `courses` order by `title`";
 $qrycheck = $mysqli->query($qry) or die($mysqli->error);
-if ($qrycheck->num_rows > 0){
-    while($fetch = $qrycheck->fetch_assoc()){
-        $courseTitles = $fetch['title'];
-    }
+
+/*
+* Get all added course
+*/
+$query="SELECT * FROM `questions` order by `created_at`";
+$result = $mysqli->query($query) or die($mysqli->error.__LINE__);
+if($result->num_rows>0){
+  while($course = $result->fetch_assoc()){
+    $course_id = $course['course_id'];
+  }
 }
+/*
+* Get course
+*/
+$courseQuery="SELECT * FROM `courses` WHERE `id` = '$course_id'";
+$results = $mysqli->query($courseQuery) or die($mysqli->error.__LINE__);
+// Total rows
+$total = $result->num_rows;
 ?>
 <!-- Include controller -->
 <?php include('./questionController.php') ?>
@@ -47,72 +60,28 @@ if ($qrycheck->num_rows > 0){
                 </tr>
               </tfoot>
               <tbody>
+              <?php while($row = $results->fetch_assoc()){ ?>
                 <tr>
-                  <td>Tiger Nixon</td>
-                  <td>System Architect</td>
-                  <td>Edinburgh</td>
-                  <td>61</td>
-                  <td>2011/04/25</td>
-                  <td>$320,800</td>
+                  <td><?php echo $row['title']; ?></td>
+                  <td><?php echo $total; ?></td>
+                  <td>1hr : 45mins</td>
                 </tr>
-                <tr>
-                  <td>Garrett Winters</td>
-                  <td>Accountant</td>
-                  <td>Tokyo</td>
-                  <td>63</td>
-                  <td>2011/07/25</td>
-                  <td>$170,750</td>
-                </tr>
-                <tr>
-                  <td>Ashton Cox</td>
-                  <td>Junior Technical Author</td>
-                  <td>San Francisco</td>
-                  <td>66</td>
-                  <td>2009/01/12</td>
-                  <td>$86,000</td>
-                </tr>
-                <tr>
-                  <td>Cedric Kelly</td>
-                  <td>Senior Javascript Developer</td>
-                  <td>Edinburgh</td>
-                  <td>22</td>
-                  <td>2012/03/29</td>
-                  <td>$433,060</td>
-                </tr>
-                <tr>
-                  <td>Airi Satou</td>
-                  <td>Accountant</td>
-                  <td>Tokyo</td>
-                  <td>33</td>
-                  <td>2008/11/28</td>
-                  <td>$162,700</td>
-                </tr>
-                <tr>
-                  <td>Brielle Williamson</td>
-                  <td>Integration Specialist</td>
-                  <td>New York</td>
-                  <td>61</td>
-                  <td>2012/12/02</td>
-                  <td>$372,000</td>
-                </tr>
-                <tr>
-                  <td>Herrod Chandler</td>
-                  <td>Sales Assistant</td>
-                  <td>San Francisco</td>
-                  <td>59</td>
-                  <td>2012/08/06</td>
-                  <td>$137,500</td>
-                </tr>
-                <tr>
-                  <td>Rhona Davidson</td>
-                  <td>Integration Specialist</td>
-                  <td>Tokyo</td>
-                  <td>55</td>
-                  <td>2010/10/14</td>
-                  <td>$327,900</td>
-                </tr>
+              <?php } ?>
               </tbody>
             </table>
+            <nav aria-label="...">
+              <ul class="pagination pagination-sm add_bottom_30">
+                <li class="page-item disabled">
+                  <a class="page-link" href="#" tabindex="-1">Previous</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#">Next</a>
+                </li>
+              </ul>
+		      </nav>
           </div>
         </div>
         <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
@@ -138,11 +107,13 @@ if ($qrycheck->num_rows > 0){
               <div class="form-group">
                 <select name="course" class="form-control" required>
                   <option value="">Select course title</option>
-                  <option value="<?php echo $courseTitles ?>"><?php echo $courseTitles ?></option>
+                  <?php while($courseTitle = $qrycheck->fetch_assoc()){ ?>
+                    <option value="<?php echo $courseTitle['title'] ?>"><?php echo $courseTitle['title'] ?></option>
+                  <?php } ?>
                 </select>
               </div>
               <div class="form-group">
-                <input type="number" name="number" placeholder="Enter question number" required>
+                <input type="text" name="number" placeholder="Enter question number" required>
               </div>
               <div class="form-group">
                 <textarea name="question" class="form-control"
@@ -161,12 +132,12 @@ if ($qrycheck->num_rows > 0){
                 <input type="text" name="optionD" class="form-control" placeholder="option D" required>
               </div>
               <div class="form-group">
-                <input type="text" name="answer" class="form-control" placeholder="Answer option (e.g Option A)" required>
+                <input type="text" name="answer" class="form-control" placeholder="Answer option (e.g OptionA)" required>
               </div>
           </div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <button class="btn btn-primary" type="submit" name="addQuestion">Add</button>
+            <button class="btn btn-success" type="submit" name="addQuestion">Add</button>
           </div>
           </form>
         </div>

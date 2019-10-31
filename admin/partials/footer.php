@@ -1,7 +1,7 @@
 <footer class="sticky-footer">
       <div class="container">
         <div class="text-center">
-          <small>Copyright © CBT SYSTEM 2019 | Made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a
+          <small>Copyright © CBT SYSTEM 2019 | Made with <i class="fa fa-fw fa-heart text-danger" aria-hidden="true"></i> by <a
                     href="https://kandesoft.herokuapp.com" target="_blank">Okandeji</a></small>
         </div>
       </div>

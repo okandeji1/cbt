@@ -137,7 +137,7 @@ hr {
       </div>
     </section>
     <div class="col-md-6">
-      <div class="copy">© 2019 CBT SYSTEM | Made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://kandesoft.herokuapp.com" target="_blank">Okandeji</a></div>
+      <div class="copy">© 2019 CBT SYSTEM | Made with <i class="fa fa-fw fa-heart text-danger" aria-hidden="true"></i> by <a href="https://kandesoft.herokuapp.com" target="_blank">Okandeji</a></div>
    </div>
 </div>
 

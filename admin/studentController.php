@@ -121,7 +121,7 @@ if(isset($_POST['update'])){
   $department = $mysqli->real_escape_string($_POST['department']);
 
   // Process update
-  $update_query = "UPDATE `students` SET `surname` = '$surname', `firstname` = '$firstname', `othername` = '$othername' `email` = '$email' `department` = '$department' WHERE `id` = '$studentId'";
+  $update_query = "UPDATE `students` SET `surname` = '$surname', `firstname` = '$firstname', `othername` = '$othername', `email` = '$email', `department` = '$department' WHERE `id` = '$studentId'";
   $update = $mysqli->query($update_query) or die($mysqli->error.__LINE__);
   // Check update
   if($update){

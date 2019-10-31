@@ -13,32 +13,32 @@
         </li>
 		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Messages">
           <a class="nav-link" href="./std_page.php">
-            <i class="fa fa-fw fa-envelope-open"></i>
+            <i class="fa fa-fw fa-user-circle"></i>
             <span class="nav-link-text">Students Management</span>
           </a>
         </li>
 		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Bookings">
           <a class="nav-link" href="./course.php">
-            <i class="fa fa-fw fa-archive"></i>
+            <i class="fa fa-fw fa-mortar-board"></i>
             <span class="nav-link-text">Courses Management <span class="badge badge-pill badge-primary">6 New</span></span>
           </a>
         </li>
 		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Reviews">
           <a class="nav-link" href="./add_test.php">
-            <i class="fa fa-fw fa-star"></i>
+            <i class="fa fa-fw fa-book"></i>
             <span class="nav-link-text">Tests Management</span>
           </a>
         </li>
 		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Bookmarks">
           <a class="nav-link" href="./question.php">
-            <i class="fa fa-fw fa-heart"></i>
+            <i class="fa fa-fw fa-question-circle"></i>
             <span class="nav-link-text">Questions Management</span>
           </a>
         </li>
 		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add listing">
           <a class="nav-link" href="./result.php">
-            <i class="fa fa-fw fa-plus-circle"></i>
-            <span class="nav-link-text">Results</span>
+            <i class="fa fa-fw fa-line-chart"></i>
+            <span class="nav-link-text"> Results</span>
           </a>
       </li>
       </ul>
