@@ -57,7 +57,7 @@ $result = $mysqli->query($query) or die($mysqli->error.__LINE__);
 			<?php } ?>
 		</div>
 		<!-- /box_general-->
-		<p><button type="submit" class="btn_1 medium" name="update">Update</button></p>
+		<p><button type="submit" class="btn_1 medium rounded" name="update">Update</button></p>
 		</form>
 	  </div>
 	  <!-- /.container-fluid-->

@@ -5,11 +5,12 @@
     $_SESSION['score'] = 0;
   }
   if($_POST){
-    $courseId = 2;
-    $number = $_POST['number'];
+    $courseId = $_SESSION['course_id'];
+    $number = $_SESSION['pageno'];
     $selected_choice = $_POST['choice'];
     $next = $number+1;
-
+dd($number);
+return
     /*
     * Get correct choice
     */

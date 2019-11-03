@@ -1,7 +1,20 @@
 <?php 
 require '../config/config.php';
+// Pagination
+if (isset($_GET['pageno'])) {
+  $pageno = $_GET['pageno'];
+} else {
+  $pageno = 1;
+}
+$no_of_records_per_page = 2;
+$offset = ($pageno-1) * $no_of_records_per_page;
+
+$total_pages_sql = "SELECT COUNT(*) FROM `students`";
+$result = $mysqli->query($total_pages_sql);
+$total_rows = $result->fetch_array()[0];
+$total_pages = ceil($total_rows / $no_of_records_per_page);
 // Get student
-$query="SELECT * FROM `students` order by 'created_at' DESC";
+$query="SELECT * FROM `students` LIMIT $offset, $no_of_records_per_page";
 $result = $mysqli->query($query) or die($mysqli->error.__LINE__);
 ?>
 <!-- Include controller -->
@@ -67,15 +80,12 @@ $result = $mysqli->query($query) or die($mysqli->error.__LINE__);
             </table>
             <nav aria-label="...">
               <ul class="pagination pagination-sm add_bottom_30">
-                <li class="page-item disabled">
-                  <a class="page-link" href="#" tabindex="-1">Previous</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
                 <li class="page-item">
-                  <a class="page-link" href="#">Next</a>
+                  <a class="page-link" href="?pageno=1" tabindex="-1">First</a>
                 </li>
+                <li class="page-item <?php if($pageno <= 1){ echo 'disabled'; } ?>"><a class="page-link" href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a></li>
+                <li class="page-item <?php if($pageno >= $total_pages){ echo 'disabled'; } ?>"><a class="page-link" href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a></li>
+                <li class="page-item"><a class="page-link" href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
               </ul>
 		        </nav>
           </div>
