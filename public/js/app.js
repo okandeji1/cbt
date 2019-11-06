@@ -10,12 +10,18 @@ function init(){
         data: {id : courseId}
     }
     $.ajax(settings).done(function(response) {
+        // Convert to javascript object
         var questions = JSON.parse(response)
+        // Initial variables
         var pos = 0, test, test_status, question, choices, choice, chA, chB, chC, correct = 0;
+        // Get all ids
         function _(x){
             return document.getElementById(x);
         }
+        // Invocation
         renderQuestion()
+
+        // Render question declaration
         function renderQuestion(){
             test = _('test');
             if(pos>= questions.length){ // If no question to display again
