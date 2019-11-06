@@ -124,6 +124,7 @@ hr {
               <div class="row">
                 <div class="col-md-8">
                     <div class="cta-text">
+                      <input type="hidden" id="course_id" value='<?php echo $_SESSION['course_id']; ?>'>
                       <input type="hidden" id="time" value='<?php echo $_SESSION['time']; ?>'>
                       <h2>Time Left: <span id="countdown"></span></h2>
                     </div>
@@ -145,61 +146,18 @@ hr {
       <div class="container">
         <div class="row">
           <div class="col-md-6">
-            <form action="exam.php" method="post">
-            <?php while($row = $result->fetch_assoc()){ ?>
-              <p>Question <?php echo $pageno; ?> of <?php echo $total; ?></p>
-              <div class="form-group">
-                <label for="" > <?php echo $row['question']; ?></label>
-              </div>
-              <div class="form-group">
-                <input type="checkbox" name="choices" value="optionA" id="choices"> <?php echo $row['option_A']; ?>
-              </div>
-              <div class="form-group">
-                <input type="checkbox" name="choices" value="optionB" id="choices"> <?php echo $row['option_B']; ?>
-              </div>
-              <div class="form-group">
-                <input type="checkbox" name="choices" value="optionC" id="choices"> <?php echo $row['option_C']; ?>
-              </div>
-              <div class="form-group">
-                <input type="checkbox" name="choices" value="optionD" id="choices"> <?php echo $row['option_D']; ?>
-              </div>
-              <div class="form-group">
-                <input type="hidden" name="choices" value="<?php echo $row['answer']; ?>" id="answer">
-              </div>
-            <?php } ?>
-            <?php if($pageno <= 1){ ?> 
-              <div class="form-group">
-                <a href="<?php if($pageno <= 1){ echo "?pageno=".($pageno + 1); } ?>" type="button" class="btn btn-primary next">Next</a>
-              </div>
-            <?php }else if($pageno >= $total_pages){ ?>
-              <div class="form-group">
-              <a href="<?php if($pageno >= $total_pages){ echo '#'; }else { echo "?pageno=".($pageno + 1); } ?>" type="button" class="btn btn-primary submit">Submit</a>
-              </div>
-            <?php }else { ?>
-              <div class="form-group">
-              <a href="<?php echo "?pageno=".($pageno + 1); ?>" type="button" class="btn btn-primary next">Next</a>
-              </div>
-            <?php } ?>
-            </form>
+            <h6 id="test_status"></h6>
+            <div id="test"></div>
           </div>
         </div>
-      </div>
-      <nav aria-label="...">
-        <ul class="pagination pagination-sm add_bottom_30">
-          <li class="page-item">
-            <a class="page-link" href="?pageno=1" tabindex="-1">First</a>
-          </li>
-          <li class="page-item <?php if($pageno <= 1){ echo 'disabled'; } ?>"><a class="page-link" href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a></li>
-          <li class="page-item <?php if($pageno >= $total_pages){ echo 'disabled'; } ?>"><a class="page-link" href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a></li>
-          <li class="page-item"><a class="page-link" href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
-        </ul>
-		  </nav>  
+      </div> 
     </section>
     <div class="col-md-6">
       <div class="copy">© 2019 CBT SYSTEM | Made with <i class="fa fa-fw fa-heart text-danger" aria-hidden="true"></i> by <a href="https://kandesoft.herokuapp.com" target="_blank">Okandeji</a></div>
    </div>
     </div>
-<script src="../public/js/jquery-2.2.4.min.js"></script>
+    <script src="../public/js/jquery-2.2.4.min.js"></script>
+<script src="../public/js/app.js"></script>
 <script src="../public/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

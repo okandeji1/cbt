@@ -144,7 +144,7 @@ hr {
           </div>
            <center><div class="row">
             <div class="col-md-12">
-              <a href="./exam.php?n=1" class="btn btn-info">START EXAM</a>
+              <a href="./exam.php" class="btn btn-info">START EXAM</a>
             </div>
           </div></center>
         </div>
